@@ -97,7 +97,7 @@
   
   #mainNav .navbar-brand {
     font-weight: 800;
-    color: #343a40;
+    color:navy;
   }
   
   #mainNav .navbar-toggler {
@@ -178,7 +178,7 @@
   header.masthead {
     margin-bottom: 50px;
     background: no-repeat center center;
-    background-color: #868e96;
+    background-color: navy;
     background-attachment: scroll;
     position: relative;
     background-size: cover;
@@ -404,14 +404,14 @@
   }
   
   .btn-primary {
-    background-color: #0085A1;
-    border-color: #0085A1;
+    background-color: navy;
+    border-color: white;
   }
   
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     color: #fff;
-    background-color: #00657b !important;
-    border-color: #00657b !important;
+    background-color:navy !important;
+    border-color: white !important;
   }
   
   .btn-lg {

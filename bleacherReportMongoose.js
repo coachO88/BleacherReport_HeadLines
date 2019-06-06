@@ -9,7 +9,7 @@ mongoose.set('useFindAndModify', false);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log ("we're connected!")
+  console.log ("Connected!")
 });
 
 const topStoriesModel = require ("./topStories.js");
@@ -22,7 +22,7 @@ axios.get("https://bleacherreport.com/").then(function(response) {
     topStoriesModel.deleteMany({
         Favorite:false
     }).then(function(data){
-        console.log ("old data removed")
+        console.log ("Data Deleted")
     }).catch(function (err){
         if (err) return handleError(err);
     });
@@ -49,7 +49,6 @@ axios.get("https://bleacherreport.com/").then(function(response) {
             if (err) return handleError(err);
         })
     });
-    console.log ("Data Entered")
 });
 
 //Server
