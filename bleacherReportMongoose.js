@@ -34,15 +34,19 @@ axios.get("https://bleacherreport.com/").then(function(response) {
         let sportURL = $(element).children(".articleMedia").children().attr("href");
         
         let sportImage = $(element).children(".articleMedia").children().children().attr("src");
+        sportImage = sportImage.split("?")[0];
+        let finalImage = sportImage + "?h=500&w=970&q=70&crop_x=center&crop_y=top";
 
-        // console.log(sportHeadline);
+
+        // console.log(sportHeadline);?h=700&w=1170&q=70&crop_x=center&crop_y=top
         // console.log(sportURL);
         // console.log(sportImage)
+        // console.log(finalImage);
         
             topStoriesModel.create({
             sportHeadline: sportHeadline,
             sportURL: sportURL,
-            sportImage: sportImage,
+            sportImage: finalImage,
         }).then(function (data){
             // console.log (data)
         }).catch(function (err){

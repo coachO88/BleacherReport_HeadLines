@@ -13,7 +13,13 @@
   
   section {
     padding-top: 5vh;
+    height: 800px;
     scroll-snap-align: center;
+    scroll-snap-type: y mandatory;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(800px);
+
+
   }
   
   p {
@@ -42,7 +48,7 @@
   }
   
   a:focus, a:hover {
-    color: #0085A1;
+    color:navy;
   }
   
   blockquote {
@@ -69,7 +75,7 @@
   
   ::selection {
     color: #fff;
-    background: #0085A1;
+    background: navy;
     text-shadow: none;
   }
   
@@ -280,7 +286,7 @@
   
   .post-preview > a:focus, .post-preview > a:hover {
     text-decoration: none;
-    color: #0085A1;
+    color: darkgray;
   }
   
   .post-preview > a > .post-title {
@@ -308,7 +314,7 @@
   
   .post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {
     text-decoration: underline;
-    color: #0085A1;
+    color: darkgray;
   }
   
   @media only screen and (min-width: 768px) {
@@ -371,7 +377,7 @@
   }
   
   .floating-label-form-group-with-focus label {
-    color: #0085A1;
+    color:navy;
   }
   
   form .form-group:first-child .floating-label-form-group {
