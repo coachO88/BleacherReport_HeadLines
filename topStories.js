@@ -15,6 +15,21 @@ var bleacherReportSchema = new Schema({
     type: String,
   },
 
+  Comments: {
+    type: Array,
+    default:null
+  },
+  
+  Favorite: {
+    type: Boolean,
+    default:false
+  },
+  
+  TimeStamp: {
+    type:Date,
+    default:Date.now
+  }
+
 });
 
 var topStories = mongoose.model("bleacherReportTopStories", bleacherReportSchema);

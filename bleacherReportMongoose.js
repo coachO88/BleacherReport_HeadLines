@@ -91,101 +91,101 @@ app.get("/top_stories", function (req, res){
     })
 });
 
-// app.get("/favorite", function (req, res){
+app.get("/saved", function (req, res){
 
-//     headlineModel.find({
-//         Favorite:true
-//     }).then(function (headlineDocs) {
+    topStoriesModel.find({
+        Favorite:true
+    }).then(function (headlineDocs) {
         
-//         for (let i = 0; i < headlineDocs.length; i++) {
-//             let headline = headlineDocs[i].Headline;
+        for (let i = 0; i < headlineDocs.length; i++) {
+            let headline = headlineDocs[i].Headline;
 
-//             commentModel.find({
-//                 Headline: headline
-//             }).then(function (docs){
-//                 let comments = docs
-//                 let headline = docs[0].Headline;
-//                 headlineModel.findOneAndUpdate({
-//                     Headline: headline,
-//                     Favorite:true
-//                 },{
-//                     Comments: comments
-//                 }).then().catch(function (err3){
-//                     if (err3) return handleError(err3);
-//                 })
-//             }).catch(function (err2){
-//                 if (err2) return handleError(err2);
-//             })
+            commentModel.find({
+                sportHeadline: sportHeadline
+            }).then(function (docs){
+                let comments = docs
+                let headline = docs[0].sportHeadline;
+                topStoriesModel.findOneAndUpdate({
+                    sportHeadline: sportHeadline,
+                    Favorite:true
+                },{
+                    Comments: comments
+                }).then().catch(function (err3){
+                    if (err3) return handleError(err3);
+                })
+            }).catch(function (err2){
+                if (err2) return handleError(err2);
+            })
 
-//             if (i == headlineDocs.length - 1) {
-//                 display()
-//             }
-//         };
-//     }).catch(function (err1){
-//         if (err1) return handleError(err1);
-//     });
+            if (i == headlineDocs.length - 1) {
+                display()
+            }
+        };
+    }).catch(function (err1){
+        if (err1) return handleError(err1);
+    });
 
-//     function display () {
-//         headlineModel.find({
-//             Favorite:true
-//         }).then(function (docs) {
-//             let hbsObject = {data: docs};
-//         res.render("favorite", hbsObject)
-//         }).catch(function (err){
-//             if (err) return handleError(err);
-//         });
-//     }
+    function display () {
+        topStoriesModel.find({
+            Favorite:true
+        }).then(function (docs) {
+            let hbsObject = {data: docs};
+        res.render("favorite", hbsObject)
+        }).catch(function (err){
+            if (err) return handleError(err);
+        });
+    }
 
 
-// });
+});
 
-// app.get("/alreadyInFavorite", function (req, res){
-//     res.render("Favorited")
-// });
+app.get("/alreadyInFavorite", function (req, res){
+    res.render("Favorited")
+});
 
-// app.post("/favorite/:id/:title", function (req, res){
-//     let id = req.params.id
-//     let title = req.params.title
+app.post("/favorite/:id/:title", function (req, res){
+    let id = req.params.id
+    let title = req.params.title
 
-//     headlineModel.find({
-//         Headline:title,
-//         Favorite:true
-//     }).then(function (data){
-//         //console.log (data.length);
-//         if (data.length === 0) {
-//             headlineModel.findOneAndUpdate({
-//                 _id:id
-//             },{
-//                 Favorite:true
-//             }).then(function (data){
-//                 res.redirect("/favorite")
-//             }).catch( function (err){
-//                 if (err) return handleError(err);
-//             })
-//         } else {
-//             res.redirect("/alreadyInFavorite")
-//             //res.json({"FOUND":"FOUND"})
-//         };
-//     }); 
-// });
+    topStoriesModel.find({
+        sportHeadline:title,
+        Favorite:true
+    }).then(function (data){
+        //console.log (data.length);
+        if (data.length === 0) {
+            topStoriesModel.findOneAndUpdate({
+                _id:id
+            },{
+                Favorite:true
+            }).then(function (data){
+                res.redirect("/favorite")
+            }).catch( function (err){
+                if (err) return handleError(err);
+            })
+        } else {
+            res.redirect("/alreadyInFavorite")
+            //res.json({"FOUND":"FOUND"})
+        };
+    }); 
+});
 
-// app.post("/comment/:headline", function (req, res){
-//     let headline = req.params.headline;
-//     let author = req.body.author;
-//     let comment = req.body.comment;
+app.post("/comment/:headline", function (req, res){
+    let headline = req.params.sportHeadline;
+    // let author = req.body.author;
+    let comment = req.body.comment;
 
-//     commentModel.create({
-//         Headline: headline,
-//         Author: author,
-//         Comment: comment
-//     }).then(function (data){
-//         //console.log (data)
-//     }).catch(function (err){
-//         if (err) return handleError(err);
-//     });
+    commentModel.create({
+        sportHeadline: sportHeadline,
+        // Author: author,
+        Comment: comment
+    }).then(function (data){
+        //console.log (data)
+    }).catch(function (err){
+        if (err) return handleError(err);
+    });
 
-//     res.redirect("/favorite")
-// });
+    res.redirect("/favorite")
+});
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
